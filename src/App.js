@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import SecretSanta from "./SecretSanta";
+import DataBase from "./Container";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         </a>
       </header> */}
 
-      <SecretSanta />
+      <DataBase />
     </div>
   );
 }
