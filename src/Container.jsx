@@ -3,8 +3,7 @@ export default class DataBase extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: [{ name: "", match: "", excludes: [], pass: "" }],
-      name: "",
+      users: [],
     };
   }
 
@@ -16,6 +15,7 @@ export default class DataBase extends React.Component {
   onClickCreateNewUser = () => {
     const { users } = this.state;
     const currentUsers = users.slice();
+
     const newUser = {
       name: this.state.name,
       match: null,
@@ -31,6 +31,7 @@ export default class DataBase extends React.Component {
 
   render() {
     const { users } = this.state;
+    console.log(this.state);
     return (
       <div>
         <div>
@@ -63,6 +64,19 @@ export default class DataBase extends React.Component {
                   <td>{value.match}</td>
                   <td>{value.excludes}</td>
                   <td>{value.pass}</td>
+                  <td>
+                    {
+                      <select type="select">
+                        {users
+                          .filter(({ name }) => name !== value.name)
+                          .map((value) => {
+                            return (
+                              <option value={value.name}>{value.name}</option>
+                            );
+                          })}
+                      </select>
+                    }
+                  </td>
                 </tr>
               );
             })}
