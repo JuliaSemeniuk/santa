@@ -29,6 +29,14 @@ export default class DataBase extends React.Component {
     });
   };
 
+  onChangeHandleExclude = (event, value) => {
+    const currentExclude = event.target.value;
+    const user = value;
+    // findIndex
+    console.log("currentExclude ", currentExclude);
+    console.log("user", value);
+  };
+
   render() {
     const { users } = this.state;
     console.log(this.state);
@@ -66,13 +74,17 @@ export default class DataBase extends React.Component {
                   <td>{value.pass}</td>
                   <td>
                     {
-                      <select type="select">
+                      <select
+                        type="select"
+                        onChange={(event) => {
+                          this.onChangeHandleExclude(event, value); //value from 68
+                        }}
+                        value={value.name}
+                      >
                         {users
                           .filter(({ name }) => name !== value.name)
                           .map((value) => {
-                            return (
-                              <option value={value.name}>{value.name}</option>
-                            );
+                            return <option>{value.name}</option>;
                           })}
                       </select>
                     }
