@@ -30,11 +30,23 @@ export default class DataBase extends React.Component {
   };
 
   onChangeHandleExclude = (event, value) => {
+    const { users } = this.state;
     const currentExclude = event.target.value;
     const user = value;
-    // findIndex
+    const currentUsers = users.slice();
+    const index = users.findIndex(
+      (targetUser) => targetUser.name === user.name
+    );
+
+    currentUsers[index].excludes.push(currentExclude);
+
+    this.setState({
+      users: currentUsers,
+    });
+
     console.log("currentExclude ", currentExclude);
     console.log("user", value);
+    console.log("index", index);
   };
 
   render() {
@@ -79,7 +91,7 @@ export default class DataBase extends React.Component {
                         onChange={(event) => {
                           this.onChangeHandleExclude(event, value); //value from 68
                         }}
-                        value={value.name}
+                        // value={value.name}
                       >
                         {users
                           .filter(({ name }) => name !== value.name)
