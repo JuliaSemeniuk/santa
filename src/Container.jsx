@@ -49,6 +49,14 @@ export default class DataBase extends React.Component {
     console.log("index", index);
   };
 
+  getUsersLength = () => {
+    const { users } = this.state;
+    const usersLength = users.length;
+    return usersLength;
+  };
+
+  onClickGetMetch = (getUsersLength, value) => {};
+
   render() {
     const { users } = this.state;
     console.log(this.state);
@@ -100,6 +108,11 @@ export default class DataBase extends React.Component {
                           })}
                       </select>
                     }
+                  </td>
+                  <td>
+                    <button onClick={this.onClickGetMetch(value)}>
+                      get match
+                    </button>
                   </td>
                 </tr>
               );
